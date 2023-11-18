@@ -48,6 +48,7 @@ on command "/kill":
 		cancel event
 		send "§4An Internal error occured while performing this command" to player
 		send "§4An Internal error occured while trying to perform a command" to console
+#funcao principal
 
 on chat:
 	if message is "!login":
